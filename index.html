@@ -55,11 +55,44 @@
             margin: 20px 0 10px;
             color: #e74c3c;
         }
+        .answer-container {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border: 1px solid #d1fae5;
+            border-radius: 8px;
+            padding: 5px 15px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .answer-container:hover {
+            background: linear-gradient(135deg, #dcffe4 0%, #c6f6d5 100%);
+            transform: translateX(5px);
+        }
+        .answer-prompt {
+            color: #10b981;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .answer-prompt:before {
+            content: "✨";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
         .answer {
-            color: #27ae60;
+            color: #0f9d58;
             margin-left: 20px;
-            padding-left: 10px;
-            border-left: 2px solid #2ecc71;
+            padding: 10px 15px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid #10b981;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            font-weight: bold;
+            animation: fadeIn 0.5s ease;
+        }
+        .show-answer .answer {
+            display: block;
         }
         
         /* 积分分配动画 */
@@ -301,6 +334,11 @@
             0%, 100% { transform: rotateY(0deg); }
             50% { transform: rotateY(180deg); }
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -333,13 +371,22 @@
         </div>
         
         <div class="question">足球比赛中，胜一场得3分，平一场得1分，负一场得0分。某队比赛5场后积10分，可能的胜负平情况是什么？</div>
-        <div class="answer">胜3场（9分），平1场（1分），负1场（0分）</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">胜3场（9分），平1场（1分），负1场（0分）</div>
+        </div>
         
         <div class="question">某队比赛7场无平局（全胜或全负），积分21分。求胜场数。</div>
-        <div class="answer">7胜</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">7胜</div>
+        </div>
         
         <div class="question">单循环赛（每两队赛一场），4队总积分范围是多少？若总积分20分是否可能？</div>
-        <div class="answer">12-18， 不可能</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">12-18， 不可能</div>
+        </div>
         
         <h3>2. 特殊规则下的积分确定</h3>
         <div class="rules-animation">
@@ -366,10 +413,16 @@
         </div>
         
         <div class="question">某队比赛7场且无平局（全胜或全负），最终积21分。求胜场数。</div>
-        <div class="answer">胜7场</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">胜7场</div>
+        </div>
         
         <div class="question">两队积分差为8分，强队积分是弱队的3倍。求两队积分。</div>
-        <div class="answer">强队12分，弱队4分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">强队12分，弱队4分</div>
+        </div>
         
         <div class="question">已知条件：
             <br>甲、乙、丙三队进行单循环赛（每两队赛1场），共3场比赛
@@ -379,7 +432,10 @@
             <br>问题：
             <br>(1) 求三队各自的最终积分
             <br>(2) 列出所有比赛的胜负关系</div>
-        <div class="answer">甲队：6分，乙队：3分，丙队：0分；甲胜乙，甲胜丙，乙胜丙</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">甲队：6分，乙队：3分，丙队：0分；甲胜乙，甲胜丙，乙胜丙</div>
+        </div>
     </div>
     
     <div class="section">
@@ -401,10 +457,16 @@
         </div>
         
         <div class="question">足球比赛中，胜一场得3分，平一场得1分，负一场得0分。某队比赛1场获胜，该队积分是多少？</div>
-        <div class="answer">3分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">3分</div>
+        </div>
         
         <div class="question">两队积分差为8分，强队积分是弱队的3倍。求两队积分。</div>
-        <div class="answer">强队12分，弱队4分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">强队12分，弱队4分</div>
+        </div>
         
         <div class="question">五支球队（A、B、C、D、E）参加双循环赛（每两队主客各赛1场），共20场比赛。已知：
             <br>A队：对B队1胜1负，对C队2胜，对D队1胜1平，对E队2平
@@ -416,15 +478,18 @@
             <br>(1)计算各队最终积分（胜3分，平1分，负0分）
             <br>(2)验证总平局数是否准确
             <br>(3)分析是否存在非常规赛果（如积分矛盾）</div>
-        <div class="answer">最终积分：
-            A：15分，
-            B：8分，
-            C：5分，
-            D：14分，
-            E：11分。
-            <br>平局验证：实际7场（题目需调整）。
-            <br>非常规情况：
-            D队对B队两胜（6分），但对A/C/E仅积8分，存在攻防不均衡现象。</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">最终积分：
+                A：15分，
+                B：8分，
+                C：5分，
+                D：14分，
+                E：11分。
+                <br>平局验证：实际7场（题目需调整）。
+                <br>非常规情况：
+                D队对B队两胜（6分），但对A/C/E仅积8分，存在攻防不均衡现象。</div>
+        </div>
         
         <h3>2. 极端情况下的积分最少值</h3>
         <div class="method">
@@ -449,13 +514,45 @@
         </div>
         
         <div class="question">两队积分差为8分，强队积分是弱队的3倍。求弱队积分。</div>
-        <div class="answer">4分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">4分</div>
+        </div>
         
         <div class="question">若强队积分是弱队的3倍，弱队至少需积多少分才能保证强队积分≤15分？</div>
-        <div class="answer">弱队≥5分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">弱队≥5分</div>
+        </div>
         
         <div class="question">弱队连续对阵3支强队（共6场），若每场输球概率60%，平局30%，胜率10%，预期积分是多少？</div>
-        <div class="answer">3.6分</div>
+        <div class="answer-container">
+            <div class="answer-prompt">点击显示答案</div>
+            <div class="answer">3.6分</div>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 点击显示答案功能
+            document.body.addEventListener('click', function(e) {
+                const container = e.target.closest('.answer-container');
+                if(container) {
+                    container.classList.toggle('show-answer');
+                }
+            });
+            
+            // 动画效果
+            const teamBars = document.querySelectorAll('.team-bar');
+            let currentBar = 0;
+            setInterval(() => {
+                teamBars[currentBar].style.animation = 'none';
+                setTimeout(() => {
+                    teamBars[currentBar].style.animation = 'barGrow 2s ease-in-out infinite alternate';
+                }, 10);
+                currentBar = (currentBar + 1) % teamBars.length;
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
